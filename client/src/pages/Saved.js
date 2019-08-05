@@ -2,9 +2,9 @@
 import React, { Component } from "react";
 import API from "../utils/API";
 import DeleteBtn from "../components/DeleteBtn";
-import SaveBtn from "../components/SaveBtn";
+// import SaveBtn from "../components/SaveBtn";
 import { List, ListItem } from "../components/List";
-import { Input, TextArea, FormBtn } from "../components/Form";
+// import { Input, TextArea, FormBtn } from "../components/Form";
 
 class Saved extends Component {
     // Initialize this.state.books as an empty array
@@ -49,11 +49,10 @@ class Saved extends Component {
                                     </strong>
 
                                 </a>
-                                <p >by {book.authors}</p>
-                                <p><img src={book.image}></img> {book.description}</p>
-
-
                                 <DeleteBtn onClick={() => this.handleDelete(book._id)} />
+                                <p >by {book.authors}</p>
+                            
+                                <p className="float-left" style={{textAlign: "center" ,}}><img className="float-left" src={book.image} ></img> {book.description}</p>
 
                             </ListItem>
                         ))}

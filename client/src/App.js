@@ -16,15 +16,16 @@ class App extends Component {
       <Router>
         <Container fluid>
           <Nav />
-
-          <Row>
             <Jumbotron>
               <h1>Google Books Search</h1>
             </Jumbotron>
-            <Route exact path="/" component={Search} />
-            <Route exact path="/saved" component={Saved} />
-            <Route exact path="/search" component={Search} />
-      
+
+          <Row>
+         
+              <Route exact path="/" component={Search} />
+              <Route exact path="/saved" component={Saved} />
+              <Route exact path="/search" component={Search} />
+
 
           </Row>
         </Container>

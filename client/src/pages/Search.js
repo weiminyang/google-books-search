@@ -5,6 +5,7 @@ import DeleteBtn from "../components/DeleteBtn";
 import SaveBtn from "../components/SaveBtn";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
+import { Col, Row, Container } from "../components/Grid";
 
 
 class Search extends Component {
@@ -42,11 +43,11 @@ class Search extends Component {
         });
     }
     handleFormSave = index => {
-       
+
         API.saveBook(this.state.books[index])
             .then(res => {
 
-              alert("saved")
+                alert("saved")
             }
             )
             .catch(err => console.log(err));
@@ -57,41 +58,49 @@ class Search extends Component {
     render() {
         return (
 
-            <div>
-                <Input
-                    value={this.state.title}
-                    onChange={this.handleInputChange}
-                    name="title"
-                    placeholder="Book Title">
-                </Input>
-                <FormBtn onClick={this.handleFormSubmit}>
+            <Container fluid>
+                <Row>
+                    <form>
+                        <Input
+                            value={this.state.title}
+                            onChange={this.handleInputChange}
+                            name="title"
+                            placeholder="Book Title">
+                        </Input>
+                        <FormBtn onClick={this.handleFormSubmit}>
+                            Search
+                    </FormBtn>
+                    </form>
+                </Row>
+                <Row>
+                    <div>
 
-                    Search
-                </FormBtn>
-                {this.state.books.length ? (
-                    <List>
+                        {this.state.books.length ? (
+                            <List>
 
-                        {this.state.books.map((book,index) => (
-                            <ListItem key={index}>
+                                {this.state.books.map((book, index) => (
+                                    <ListItem key={index}>
 
-                                <a href={book.link}>
-                                    <strong>
-                                        {book.title}
-                                    </strong>
+                                        <a href={book.link}>
+                                            <strong>
+                                                {book.title}
+                                            </strong>
 
-                                </a>
-                                <p >by {book.authors}</p>
-                                <p><img src={book.image}></img> {book.description}</p>
+                                        </a>
+                                        <p >by {book.authors}</p>
+                                        <p><img src={book.image}></img> {book.description}</p>
 
 
-                                <SaveBtn onClick={() => this.handleFormSave(index)} />
-                            </ListItem>
-                        ))}
-                    </List>
-                ) : (
-                        <h3>No Results to Display</h3>
-                    )}
-            </div>
+                                        <SaveBtn onClick={() => this.handleFormSave(index)} />
+                                    </ListItem>
+                                ))}
+                            </List>
+                        ) : (
+                                <h3>No Results to Display</h3>
+                            )}
+                    </div>
+                </Row>
+            </Container>
         )
     }
 

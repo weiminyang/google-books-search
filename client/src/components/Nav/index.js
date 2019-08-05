@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./style.css";
+
 function Nav() {
   return (
 
@@ -8,9 +10,6 @@ function Nav() {
        <Link className="navbar-brand" to="/">
        Google Books
       </Link>
-      <div>
-        <ul className="navbar-nav">
-          <li className="nav-item">
             <Link
               to="/search"
               className={
@@ -21,19 +20,12 @@ function Nav() {
             >
               Search
             </Link>
-          </li>
-          <li className="nav-item">
             <Link
               to="/saved"
               className={window.location.pathname === "/saved" ? "nav-link active" : "nav-link"}
             >
               Saved
             </Link>
-          </li>
-       
-        </ul>
-      </div>
-      
     </nav>
   );
 }
