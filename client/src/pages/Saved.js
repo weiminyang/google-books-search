@@ -12,20 +12,21 @@ class Saved extends Component {
         books: [],
 
     };
-
+//initially show all books in database
     componentDidMount() {
 
         this.loadBooks();
         
     }
 
+    // get data from database and set to state
     loadBooks(){
         API.getBook().then(res => {
             this.setState({ books: res.data })
         })
             .catch(err => console.log(err));
     }
-
+// delete the book from database and reload all books
     handleDelete = id => {
         API.deleteBook(id)
           .then(res => this.loadBooks())
@@ -37,9 +38,11 @@ class Saved extends Component {
         return (
             <div>
                 <h3>Saved Books</h3>
+
+                {/* judge if there are books in state.books */}
                 {this.state.books.length ? (
                     <List>
-
+                        {/* render all books     */}
                         {this.state.books.map(book => (
                             <ListItem key={book._id}>
 
@@ -49,6 +52,7 @@ class Saved extends Component {
                                     </strong>
 
                                 </a>
+                                {/* handle the Delete function when click on delete button*/}
                                 <DeleteBtn onClick={() => this.handleDelete(book._id)} />
                                 <p >by {book.authors}</p>
                             

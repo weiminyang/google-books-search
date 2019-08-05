@@ -20,6 +20,7 @@ class Search extends Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
+        // search books and push 5 of them to state.books
         API.search(this.state.title).then(books => {
             let a = []
             for (let i = 0; i < 5; i++) {
@@ -36,12 +37,16 @@ class Search extends Component {
             })
         })
     }
+
+    //get the value of input
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
             [name]: value
         });
     }
+
+    //save all books we got from search to database
     handleFormSave = index => {
 
         API.saveBook(this.state.books[index])
@@ -59,14 +64,16 @@ class Search extends Component {
         return (
 
             <Container fluid>
-                <Row>
-                    <form>
+                <Row >
+                    <form >
+                        {/* get input title of book */}
                         <Input
                             value={this.state.title}
                             onChange={this.handleInputChange}
                             name="title"
                             placeholder="Book Title">
                         </Input>
+                        {/* run function when click the button */}
                         <FormBtn onClick={this.handleFormSubmit}>
                             Search
                     </FormBtn>
@@ -77,7 +84,7 @@ class Search extends Component {
 
                         {this.state.books.length ? (
                             <List>
-
+                                {/* render all books we search from google books */}
                                 {this.state.books.map((book, index) => (
                                     <ListItem key={index}>
 
@@ -90,7 +97,7 @@ class Search extends Component {
                                         <p >by {book.authors}</p>
                                         <p><img src={book.image}></img> {book.description}</p>
 
-
+                                        {/* run the save function when click on save button */}
                                         <SaveBtn onClick={() => this.handleFormSave(index)} />
                                     </ListItem>
                                 ))}
