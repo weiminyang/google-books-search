@@ -1,19 +1,34 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Nav from "./components/Nav";
+import Jumbotron from "./components/Jumbotron";
+// import DeleteBtn from "../components/DeleteBtn";
+import { Col, Row, Container } from "./components/Grid";
+// import { List, ListItem } from "../components/List";
+// import { Input, TextArea, FormBtn } from "../components/Form";
+import Saved from "./pages/Saved";
+import Search from "./pages/Search";
+// import "./App.css";
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <Router>
+        <Container fluid>
+          <Nav />
+
+          <Row>
+            <Jumbotron>
+              <h1>Google Books Search</h1>
+            </Jumbotron>
+            <Route exact path="/" component={Search} />
+            <Route exact path="/saved" component={Saved} />
+            <Route exact path="/search" component={Search} />
+      
+
+          </Row>
+        </Container>
+      </Router>
     );
   }
 }
